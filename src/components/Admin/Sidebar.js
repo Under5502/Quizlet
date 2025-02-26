@@ -1,6 +1,6 @@
 import "react-pro-sidebar/dist/css/styles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouse, faPerson } from "@fortawesome/free-solid-svg-icons";
+import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 import {

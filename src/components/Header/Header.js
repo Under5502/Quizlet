@@ -1,10 +1,7 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
-
-
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Header() {
   return (
@@ -29,8 +26,6 @@ function Header() {
           <Nav>
             <button className="login-btn">Log in</button>
             <button className="signup-btn">Sign up</button>
-
-    
           </Nav>
         </Navbar.Collapse>
       </Container>
