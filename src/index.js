@@ -4,15 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
-<<<<<<< HEAD
-import "bootstrap/dist/js/bootstrap.bundle.min.js"; 
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-=======
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Users from "./components/Users/Users";
@@ -35,7 +27,6 @@ root.render(
       </Route>
     </Routes>
   </BrowserRouter>
->>>>>>> 6090b5e (commit)
 );
 
 // If you want to start measuring performance in your app, pass a function
