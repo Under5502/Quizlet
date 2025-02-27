@@ -4,6 +4,7 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 function ModalCreateUser(props) {
   const { show, setShow } = props;
@@ -32,16 +33,27 @@ function ModalCreateUser(props) {
       setImage(e.target.files[0]);
     }
   };
+  const validateEmail = (email) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+  };
 
   const handleSubmitCreateUsers = async () => {
-    // let data = {
-    //   email: email,
-    //   password: password,
-    //   username: username,
-    //   role: role,
-    //   userImage: image,
-    // };
-    // console.log(data);
+    const isValidateEmail = validateEmail(email);
+    //validate
+    if (!isValidateEmail) {
+      toast.error("invalid email!");
+      return;
+    }
+    if (!password) {
+      toast.error("invalid password!");
+      return;
+    }
+
+    //submit data
     const data = new FormData();
     data.append("email", email);
     data.append("password", password);
@@ -54,6 +66,14 @@ function ModalCreateUser(props) {
       data
     );
     console.log(res);
+    if (res.data && res.data.EC === 0) {
+      toast.success("Create user success");
+      handleClose();
+    }
+
+    if (res.data && res.data.EC != 0) {
+      toast.error(res.data.EM);
+    }
   };
 
   return (
