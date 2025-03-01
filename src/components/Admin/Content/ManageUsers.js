@@ -29,6 +29,10 @@ function ManageUsers(props) {
       setListUsers(res.DT);
     }
   };
+
+  const resetUpdateData = () => {
+    setDataUpdate({});
+  };
   return (
     <div className="manage-users-container">
       <div className="title">Manage Users</div>
@@ -58,6 +62,8 @@ function ManageUsers(props) {
         show={shoModalUpdateUser}
         setShow={setShoModalUpdateUser}
         dataUpdate={dataUpdate}
+        fetchListUser={fetchListUser}
+        resetUpdateData={resetUpdateData}
       />
     </div>
   );

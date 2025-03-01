@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { postCreateNewUser } from "../../../services/apiService";
+import { putUpdateUser } from "../../../services/apiService";
 import { toast } from "react-toastify";
 import _ from "lodash";
 
@@ -18,6 +18,7 @@ function ModalUpdateUser(props) {
     setImage("");
     setPreviewImage("");
     setUsername("");
+    props.resetUpdateData();
   };
 
   const [email, setEmail] = useState("");
@@ -60,12 +61,8 @@ function ModalUpdateUser(props) {
       toast.error("invalid email!");
       return;
     }
-    if (!password) {
-      toast.error("invalid password!");
-      return;
-    }
 
-    let data = await postCreateNewUser(email, password, username, role, image);
+    let data = await putUpdateUser(dataUpdate.id, username, role, image);
 
     if (data && data.EC === 0) {
       toast.success("Create user success");
