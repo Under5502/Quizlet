@@ -41,4 +41,10 @@
     height: 40px;
     border: 1px solid green;
   }
+  .admin-main {
+    .user-pagination {
+      display: flex;
+      justify-content: center;
+    }
+  }
 }

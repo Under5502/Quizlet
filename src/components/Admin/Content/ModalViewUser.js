@@ -7,8 +7,8 @@ import { putUpdateUser } from "../../../services/apiService";
 import { toast } from "react-toastify";
 import _ from "lodash";
 
-function ModalUpdateUser(props) {
-  const { show, setShow, dataUpdate } = props;
+function ModalViewUser(props) {
+  const { show, setShow, dataUpdate, dataView } = props;
 
   const handleClose = () => {
     setShow(false);
@@ -18,7 +18,7 @@ function ModalUpdateUser(props) {
     setImage("");
     setPreviewImage("");
     setUsername("");
-    props.resetUpdateData();
+    props.resetViewData();
   };
 
   const [email, setEmail] = useState("");
@@ -29,16 +29,16 @@ function ModalUpdateUser(props) {
   const [previewImage, setPreviewImage] = useState("");
 
   useEffect(() => {
-    if (!_.isEmpty(dataUpdate)) {
-      setEmail(dataUpdate.email);
-      setUsername(dataUpdate.username);
-      setRole(dataUpdate.role);
+    if (!_.isEmpty(dataView)) {
+      setEmail(dataView.email);
+      setUsername(dataView.username);
+      setRole(dataView.role);
       setImage("");
-      if (dataUpdate.image) {
-        setPreviewImage(`data:image/jpeg;base64,${dataUpdate.image}`);
+      if (dataView.image) {
+        setPreviewImage(`data:image/jpeg;base64,${dataView.image}`);
       }
     }
-  }, [dataUpdate]);
+  }, [dataView]);
 
   const handleUploadImage = (e) => {
     if (e.target && e.target.files && e.target.files[0]) {
@@ -77,6 +77,10 @@ function ModalUpdateUser(props) {
 
   return (
     <>
+      {/* <Button variant="primary" onClick={handleShow}>
+        Launch demo modal
+      </Button> */}
+
       <Modal
         show={show}
         onHide={handleClose}
@@ -157,12 +161,9 @@ function ModalUpdateUser(props) {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={() => handleSubmitCreateUsers()}>
-            Save
-          </Button>
         </Modal.Footer>
       </Modal>
     </>
   );
 }
-export default ModalUpdateUser;
+export default ModalViewUser;
