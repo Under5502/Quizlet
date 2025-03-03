@@ -67,7 +67,7 @@ function TableUserPaginate(props) {
           onPageChange={handlePageClick}
           pageRangeDisplayed={3}
           marginPagesDisplayed={2}
-          pageCount={pageCount}
+          pageCount={pageCount > 0 ? pageCount : 1}
           previousLabel="< Prev"
           pageClassName="page-item"
           pageLinkClassName="page-link"

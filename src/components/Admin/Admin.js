@@ -3,7 +3,7 @@ import "./Admin.scss";
 import { FaBars } from "react-icons/fa";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+
 
 function Admin(props) {
   const [collapsed, setCollapsed] = useState(false);
@@ -25,13 +25,7 @@ function Admin(props) {
           <Outlet />
         </div>
       </div>
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        closeOnClick={true}
-        pauseOnHover={false}
-        theme="dark"
-      />
+    
     </div>
   );
 }
