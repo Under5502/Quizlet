@@ -14,6 +14,7 @@ function ModalDeleteUser(props) {
       toast.success("Delete user success");
       handleClose();
       // await props.fetchListUser();
+      props.setCurrentPage(1);
       await props.fetchListUserWithPaginate(1);
     }
 
