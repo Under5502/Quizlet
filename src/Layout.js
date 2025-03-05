@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import App from "./App";
 import Users from "./components/Users/Users";
 import Admin from "./components/Admin/Admin";
@@ -7,6 +7,7 @@ import ManageUsers from "./components/Admin/Content/ManageUsers";
 import Dashboard from "./components/Admin/Content/Dashboard";
 import Login from "./components/Auth/Login";
 import { ToastContainer } from "react-toastify";
+import Register from "./components/Auth/Register";
 function Layout(props) {
   return (
     <>
@@ -21,6 +22,7 @@ function Layout(props) {
         </Route>
 
         <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
       </Routes>
       <ToastContainer
         position="top-right"
