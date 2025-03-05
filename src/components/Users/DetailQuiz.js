@@ -1,13 +1,17 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import { getDataQuiz } from "../../services/apiService";
 import "./DetailQuiz.scss";
 import _ from "lodash";
+import Question from "./Question";
 
 function DetailQuiz(props) {
   const location = useLocation();
   const params = useParams();
   const quizId = params.id;
+
+  const [dataQuiz, setDataQuiz] = useState([]);
+  const [index, setIndex] = useState(0);
 
   useEffect(() => {
     fetchQuestions();
@@ -37,9 +41,20 @@ function DetailQuiz(props) {
           return { questionId: key, answers, questionDescription, image };
         })
         .value();
+      setDataQuiz(data);
     }
   };
 
+  console.log("check data", dataQuiz);
+
+  const handlePrev = () => {
+    if (index - 1 < 0) return;
+    setIndex(index - 1);
+  };
+
+  const handleNext = () => {
+    if (dataQuiz && dataQuiz.length > index + 1) setIndex(index + 1);
+  };
   return (
     <div className="detail-quiz-container">
       <div className="left-content">
@@ -51,16 +66,21 @@ function DetailQuiz(props) {
           <img />
         </div>
         <div className="q-content">
-          <div className="question">Question 1: how are you doing</div>
-          <div className="answer">
-            <div className="a-child">A. A</div>
-            <div className="b-child">B. B</div>
-            <div className="c-child">C. C</div>
-          </div>
+          <Question
+            index={index}
+            data={dataQuiz && dataQuiz.length > 0 ? dataQuiz[index] : []}
+          />
         </div>
         <div className="footer">
-          <button className="btn btn-secondary">Prev</button>
-          <button className="btn btn-primary">Next</button>
+          <button className="btn btn-secondary" onClick={() => handlePrev()}>
+            Prev
+          </button>
+          <button className="btn btn-primary" onClick={() => handleNext()}>
+            Next
+          </button>
+          <button className="btn btn-warning" onClick={() => handleNext()}>
+            Finish
+          </button>
         </div>
       </div>
       <div className="right-content">count down</div>
